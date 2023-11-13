@@ -51,10 +51,13 @@ const imgSrc = [
     // TASTO AVANTI
     function next() {
         if(imgPosition == 0) {
-            imgsArray[imgPosition].classList.add("zId1");
-            descrizione[imgPosition].classList.add("zId2");
-            miniatureArray[imgPosition].classList.add("borderImg");
-            imgPosition++;
+            imgsArray[imgPosition + 1].classList.add("zId1");
+            imgsArray[imgPosition].classList.remove("zId1");
+            descrizione[imgPosition + 1].classList.add("zId2");
+            descrizione[imgPosition].classList.remove("zId2");
+            miniatureArray[imgPosition + 1].classList.add("borderImg");
+            miniatureArray[imgPosition].classList.remove("borderImg");
+            imgPosition = 2;
         } else if (imgPosition < imgsArray.length) {
             imgsArray[imgPosition - 1].classList.remove("zId1");
             descrizione[imgPosition - 1].classList.remove("zId2");
@@ -103,11 +106,11 @@ const imgSrc = [
     // TIMER
     let timer = true;
 
-    let myTimer = setInterval(next, 1000);
+    let myTimer = setInterval(next, 3*1000);
   
     function imgTimer() {
         if(!timer) {
-            myTimer = setInterval(next, 1000);
+            myTimer = setInterval(next, 3*1000);
             timer = true;
         }
     }
@@ -118,6 +121,6 @@ const imgSrc = [
     }
 
     function reverseTimer() {
-        myTimer = setInterval(back, 1000);
+        myTimer = setInterval(back, 3*1000);
         timer = true;
     }
