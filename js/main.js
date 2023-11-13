@@ -99,3 +99,25 @@ const imgSrc = [
             imgPosition--;
         }
     }
+
+    // TIMER
+    let timer = true;
+
+    let myTimer = setInterval(next, 1000);
+  
+    function imgTimer() {
+        if(!timer) {
+            myTimer = setInterval(next, 1000);
+            timer = true;
+        }
+    }
+
+    function stopTimer() {
+        clearInterval(myTimer);
+        timer = false;
+    }
+
+    function reverseTimer() {
+        myTimer = setInterval(back, 1000);
+        timer = true;
+    }
