@@ -26,14 +26,18 @@ const imgSrc = [
     // inserisco le immagini nell'HTML
     for (i = 0; i < imgSrc.length; i++) {
         let immagineDaInserire = `<img src="${imgSrc[i].image}">`;
+        let descrizione = `<div><h3>${imgSrc[i].title}</h3> <p>${imgSrc[i].text}</p></div>`;
 
         document.getElementById("carousel").innerHTML += immagineDaInserire;
+        document.getElementById("description").innerHTML += descrizione;
         document.getElementById("miniature").innerHTML += immagineDaInserire;
     }
 
     // prendo array di immagini
     let imgsArray = document.querySelectorAll("#carousel img");
     let miniatureArray = document.querySelectorAll("#miniature img");
+    // prendo array descrizione
+    let descrizione = document.querySelectorAll("#description div");
 
     for (i = 0; i < imgsArray.length; i++) {
         console.log(imgsArray[i]);
@@ -42,24 +46,30 @@ const imgSrc = [
     let imgPosition = 0;
     imgsArray[imgPosition].classList.add("zId1");
     miniatureArray[imgPosition].classList.add("borderImg");
+    descrizione[imgPosition].classList.add("zId2");
 
     // TASTO AVANTI
     function next() {
         if(imgPosition == 0) {
             imgsArray[imgPosition].classList.add("zId1");
+            descrizione[imgPosition].classList.add("zId2");
             miniatureArray[imgPosition].classList.add("borderImg");
             imgPosition++;
         } else if (imgPosition < imgsArray.length) {
             imgsArray[imgPosition - 1].classList.remove("zId1");
+            descrizione[imgPosition - 1].classList.remove("zId2");
             miniatureArray[imgPosition - 1].classList.remove("borderImg");
             imgsArray[imgPosition].classList.add("zId1");
+            descrizione[imgPosition].classList.add("zId2");
             miniatureArray[imgPosition].classList.add("borderImg");
             imgPosition++;
         } else {
             imgsArray[imgPosition - 1].classList.remove("zId1");
+            descrizione[imgPosition - 1].classList.remove("zId2");
             miniatureArray[imgPosition - 1].classList.remove("borderImg");
             imgPosition = 0;
             imgsArray[imgPosition].classList.add("zId1");
+            descrizione[imgPosition].classList.add("zId2");
             miniatureArray[imgPosition].classList.add("borderImg");
         }
     }
@@ -67,20 +77,24 @@ const imgSrc = [
     // TASTO INDIETRO
     function back() {
         if(imgPosition == imgsArray.length) {
-            // imgsArray[imgPosition].classList.remove("zId1");
             imgPosition--;
             imgsArray[imgPosition].classList.add("zId1");
+            descrizione[imgPosition].classList.add("zId2");
             miniatureArray[imgPosition].classList.add("borderImg");
         } else if (imgPosition == 0) {
             imgsArray[imgPosition].classList.remove("zId1");
+            descrizione[imgPosition].classList.remove("zId2");
             miniatureArray[imgPosition].classList.remove("borderImg");
             imgPosition = imgsArray.length - 1;
             imgsArray[imgPosition].classList.add("zId1");
+            descrizione[imgPosition].classList.add("zId2");
             miniatureArray[imgPosition].classList.add("borderImg");
         } else {
             imgsArray[imgPosition].classList.remove("zId1");
+            descrizione[imgPosition].classList.remove("zId2");
             miniatureArray[imgPosition].classList.remove("borderImg");
             imgsArray[imgPosition - 1].classList.add("zId1");
+            descrizione[imgPosition - 1].classList.add("zId2");
             miniatureArray[imgPosition - 1].classList.add("borderImg");
             imgPosition--;
         }
